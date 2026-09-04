@@ -37,6 +37,8 @@ export const register = async (req, res) => {
   }
 };
 
+//Login part ok
+
 export const login = async () => {
   const { email, password } = req.body;
 
@@ -45,5 +47,21 @@ export const login = async () => {
       success: false,
       message: "Email and password are required",
     });
+  }
+
+  try {
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+      return res.json({ success: false, message: "Invalid email" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.json({ success: false, message: "Invalid password" });
+    }
+  } catch (error) {
+    return res.json({ success: false, message: error.message });
   }
 };
