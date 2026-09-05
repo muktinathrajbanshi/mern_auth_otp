@@ -132,6 +132,10 @@ export const sendVerifyOtp = async (req, res) => {
       subject: "Account Verification OTP",
       text: `Your OTP is ${otp}. Verify your account using this OTP.`,
     };
+
+    await transporter.sendMail(mailOptions);
+
+    res.json({ success: true, message: "Verification OTP Sent on Email" });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }
