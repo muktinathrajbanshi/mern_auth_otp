@@ -41,7 +41,7 @@ export const register = async (req, res) => {
 
 //Login part ok
 
-export const login = async () => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
