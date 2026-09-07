@@ -234,6 +234,15 @@ export const resetPassword = async (req, res) => {
   }
 
   try {
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+      return res.json({ success: false, message: "User not found" });
+    }
+
+    if (user.resetOtp === "" || user.resetOtp !== otp) {
+      return res.json({ success: false, message: "Invalid OTP" });
+    }
   } catch (error) {
     return res.json({ success: false, message: error.message });
   }
