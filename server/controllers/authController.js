@@ -119,7 +119,7 @@ export const sendVerifyOtp = async (req, res) => {
       return res.json({ success: false, message: "Account Already verified" });
     }
 
-    const otp = String(math.floor(100000 + Math.random() * 900000));
+    const otp = String(Math.floor(100000 + Math.random() * 900000));
 
     user.verifyOtp = otp;
     user.verifyOtpExpireAt = Date.now() + 24 * 60 * 60 * 1000;
@@ -141,7 +141,7 @@ export const sendVerifyOtp = async (req, res) => {
   }
 };
 
-// Verify email account
+// Verify the Email using the OTP
 
 export const verifyEmail = async (req, res) => {
   const { userId, otp } = req.body;
@@ -174,5 +174,14 @@ export const verifyEmail = async (req, res) => {
     return res.json({ success: true, message: "Email verified successfully" });
   } catch (error) {
     return res.json({ success: false, message: "Missing Details" });
+  }
+};
+
+// Check if user is authenticated
+export const isAuthenticated = async (req, res) => {
+  try {
+    return res.json({ success: true });
+  } catch (error) {
+    return res.json({ success: false, message: error.message });
   }
 };

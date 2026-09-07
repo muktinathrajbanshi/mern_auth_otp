@@ -22,3 +22,5 @@ const userAuth = async (req, res, next) => {
     next();
   } catch (error) {}
 };
+
+export default userAuth;
