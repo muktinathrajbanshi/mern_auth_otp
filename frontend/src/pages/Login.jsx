@@ -1,5 +1,18 @@
+import { useState } from "react";
+import { assets } from "../assets/assets";
+
 const Login = () => {
-  return <div>Login Page</div>;
+  const [state, setState] = useState("Sign up");
+
+  return (
+    <div>
+      <img
+        src={assets.logo}
+        alt=""
+        className="absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer"
+      />
+    </div>
+  );
 };
 
 export default Login;
