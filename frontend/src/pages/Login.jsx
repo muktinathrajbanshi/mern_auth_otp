@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { assets } from "../assets/assets";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [state, setState] = useState("Sign Up");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,6 +13,7 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-blue-200 to-purple-400">
       <img
+        onClick={() => navigate("/")}
         src={assets.logo}
         alt=""
         className="absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer"
@@ -64,7 +68,10 @@ const Login = () => {
             />
           </div>
 
-          <p className="mb-4 text-indigo-500 cursor-pointer">
+          <p
+            onClick={() => navigate("/reset-password")}
+            className="mb-4 text-indigo-500 cursor-pointer"
+          >
             Forgot password?
           </p>
 
