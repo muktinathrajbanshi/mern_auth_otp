@@ -43,6 +43,8 @@ const Login = () => {
           <div className="mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-[#333A5C]">
             <img src={assets.mail_icon} alt="img" />
             <input
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               className="bg-transparent outline-none"
               type="email"
               placeholder="Email id"
@@ -53,6 +55,8 @@ const Login = () => {
           <div className="mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-[#333A5C]">
             <img src={assets.lock_icon} alt="img" />
             <input
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
               className="bg-transparent outline-none"
               type="password"
               placeholder="Password"
