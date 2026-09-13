@@ -10,6 +10,10 @@ const EmailVerify = () => {
         alt=""
         className="absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer"
       />
+      <form className="bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm">
+        <h1>Email Verify OTP</h1>
+        <p>Enter the 6-digit code sent to your email id.</p>
+      </form>
     </div>
   );
 };
