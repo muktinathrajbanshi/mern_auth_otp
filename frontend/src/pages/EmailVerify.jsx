@@ -1,7 +1,10 @@
 import { Navigate } from "react-router-dom";
 import { assets } from "../assets/assets";
+import React from "react";
 
 const EmailVerify = () => {
+  const inputRefs = React.useRef([]);
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 to-purple-400">
       <img
@@ -27,6 +30,7 @@ const EmailVerify = () => {
                 key={index}
                 required
                 className="w-12 h-12 bg-[#333a5c] text-white text-center text-xl rounded-md"
+                ref={(e) => (inputRefs.current[index] = e)}
               />
             ))}
         </div>
