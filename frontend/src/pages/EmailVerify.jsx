@@ -5,6 +5,18 @@ import React from "react";
 const EmailVerify = () => {
   const inputRefs = React.useRef([]);
 
+  const handleInput = (e, index) => {
+    if(e.target.value.length > 0 && index < inputRefs.current.length - 1){
+      inputRefs.current[index + 1].focus();
+    }
+  }
+
+  const handleInput = () => {
+    if(e.target.value.length > 0 && index < inputRefs.current.length - 1) {
+      inputRefs.current[]
+    }
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 to-purple-400">
       <img
@@ -31,6 +43,7 @@ const EmailVerify = () => {
                 required
                 className="w-12 h-12 bg-[#333a5c] text-white text-center text-xl rounded-md"
                 ref={(e) => (inputRefs.current[index] = e)}
+                onInput={(e) => handleInput(e, index)}
               />
             ))}
         </div>
