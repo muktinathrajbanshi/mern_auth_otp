@@ -1,8 +1,13 @@
 import { Navigate } from "react-router-dom";
 import { assets } from "../assets/assets";
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+import axios from "axios";
 
 const EmailVerify = () => {
+  axios.defaults.withCredentials = true;
+  const { backendUrl, isLoggedIn, userData, getUserData } =
+    useContext(AppContext);
   const inputRefs = React.useRef([]);
 
   const handleInput = (e, index) => {
@@ -25,6 +30,19 @@ const EmailVerify = () => {
         inputRefs.current[index].value = char;
       }
     });
+  };
+
+  const onSubmitHandler = async (e) => {
+    try {
+      e.preventDefault();
+      const otpArray = inputRefs.current.map((e) => e.value);
+      const otp = otpArray.join("");
+
+      const { data } = await axios.post(
+        backendUrl + "/api/auth/verify-account",
+        { otp },
+      );
+    } catch (error) {}
   };
 
   return (
