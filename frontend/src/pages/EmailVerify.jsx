@@ -1,14 +1,17 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const EmailVerify = () => {
   axios.defaults.withCredentials = true;
   const { backendUrl, isLoggedIn, userData, getUserData } =
     useContext(AppContext);
   const inputRefs = React.useRef([]);
+
+  const navigate = useNavigate();
 
   const handleInput = (e, index) => {
     if (e.target.value.length > 0 && index < inputRefs.current.length - 1) {
@@ -42,7 +45,17 @@ const EmailVerify = () => {
         backendUrl + "/api/auth/verify-account",
         { otp },
       );
-    } catch (error) {}
+
+      if (data.success) {
+        toast.success(data.message);
+        getUserData();
+        navigate("/");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
