@@ -1,6 +1,6 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -58,6 +58,10 @@ const EmailVerify = () => {
     }
   };
 
+  useEffect(() => {
+    isLoggedIn && userData && userData.isAccountVerified && navigate("/");
+  }, [isLoggedIn, userData]);
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 to-purple-400">
       <img
@@ -66,7 +70,10 @@ const EmailVerify = () => {
         alt=""
         className="absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer"
       />
-      <form className="bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm">
+      <form
+        onSubmit={onSubmitHandler}
+        className="bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm"
+      >
         <h1 className="text-white text-2xl font-semibold text-center mb-4">
           Email Verify OTP
         </h1>
