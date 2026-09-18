@@ -1,7 +1,15 @@
+import { Navigate } from "react-router-dom";
+import { assets } from "../assets/assets";
+
 const ResetPassword = () => {
   return (
-    <div>
-      <h1>Reset Password</h1>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 to-purple-400">
+      <img
+        onClick={() => Navigate("/")}
+        src={assets.logo}
+        alt=""
+        className="absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer"
+      />
     </div>
   );
 };
