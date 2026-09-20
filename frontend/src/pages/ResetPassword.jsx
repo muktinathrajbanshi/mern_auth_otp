@@ -48,7 +48,10 @@ const ResetPassword = () => {
         { email },
       );
       data.success ? toast.success(data.message) : toast.error(data.message);
-    } catch (error) {}
+      data.success && setIsEmailSent(true);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -63,7 +66,10 @@ const ResetPassword = () => {
       {/* enter email id  */}
 
       {!isEmailSent && (
-        <form className="bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm">
+        <form
+          onSubmit={onSubmitEmail}
+          className="bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm"
+        >
           <h1 className="text-white text-2xl font-semibold text-center mb-4">
             Reset password
           </h1>
